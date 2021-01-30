@@ -375,6 +375,7 @@ useradd -g ufsursuusr ufsursuusr
 серверах для MQ-менеджера «M99.ESBMS.GATEWAY1» создать файловую систему
 и пользователей в одноименных группах:
 
+```javascript
 groupadd ibs38usr
 groupadd ups99usr
 groupadd esbmsusr
@@ -403,6 +404,7 @@ useradd -g cod3dvk99usr cod3dvk99usr
 useradd -g dm99usr dm99usr
 useradd -g afn99usr afn99usr
 useradd -g uvdousr uvdousr
+``````
 
 3)  переопределить ограничения на максимальное число открытых файлов и
     создаваемых потоков:
