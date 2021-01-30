@@ -700,49 +700,45 @@ height="0.5756944444444444in"}
 read/write/execute для пользователя, от которого будет производиться
 запуск WildFly и группы, к которой он принадлежит (774).
 
-4\) В созданной папке создать файл module.xml со следующим содержимым: 
+4\) В созданной папке создать файл module.xml со следующим содержимым:
 
-\<module xmlns=\"urn:jboss:module:1.0\" name=\"org.postgresql\"\> \
-  \<resources\> \
-      \<resource-root path=\"postgresql-9.2-1002.jar\"/\> \
-  \</resources\> \
-  \<dependencies\> \
-      \<module name=\"javax.api\"/\> \
-      \<module name=\"javax.transaction.api\"/\> 
-
-\<dependencies\> 
+```
+<module xmlns="urn:jboss:module:1.0" name="org.postgresql"> 
+    <resources>
+        <resource-root path="postgresql-9.2-1002.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/> 
+  <dependencies> 
+``````
 
 5\) Прописать в файл
 «/usr/WF/WF_PPRB/standalone/configuration/standalone.xml» в строку под
 тегом «\<subsystem xmlns=\"urn:jboss:domain:ee:4.0\"\>» следующий тег:
 
-\<global-modules\>
+```
+  <global-modules>
 
-\<module name=\"org.postgresql\" slot=\"main\"/\>
+  <module name="org.postgresql" slot="main">
 
-\</global-modules\>
+  </global-modules>
+``````
 
 Здесь же добавить тэг с новым драйвером:
 
-\<subsystem xmlns=\"urn:jboss:domain:datasources:4.0\"\>
-
-\<datasources\>
-
-\<drivers\>
-
+```
+  <subsystem xmlns="urn:jboss:domain:datasources:4.0">
+    <datasources>
+      <drivers>
 ...
-
-\<driver name=\"postgresql\" module=\"org.postgresql\"\>
-
-\<driver-class\>org.postgresql.Driver\</driver-class\>
-
-\</driver\>
-
-\</drivers\>
-
-\</datasources\>
-
-\</subsystem\>
+        <driver name="postgresql" module="org.postgresql">
+          <driver-class>org.postgresql.Driver  </driver-class>
+        </driver>
+      </drivers>
+    </datasources>
+  </subsystem>
+``````
 
 6\) Загрузить библиотеку ojdbc6-11.2.0.3.jar по ссылке:
 http://sbtnexus.ca.sbrf.ru:8081/nexus/content/repositories/Platform_thirdparty/ojdbc6/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar
@@ -766,8 +762,9 @@ http://sbtnexus.ca.sbrf.ru:8081/nexus/content/repositories/Platform_thirdparty/o
 
 3\) Указать в файле в директории «/usr/WF/WF_PPRB/bin/standalone.conf»,
 в блоке «JAVA_OPTS» строку:
-
+```
 -Djava.library.path=/usr/WF/WF_PPRB/standalone/lib/ext
+``````
 
 4\) В папке ««/usr/WF/WF_PPRB/modules/system/layers/base» создать
 директорию «org/zeromq/jzmq/main». Скопировать туда файлы «module.xml» и
@@ -777,15 +774,13 @@ http://sbtnexus.ca.sbrf.ru:8081/nexus/content/repositories/Platform_thirdparty/o
 
 5\) Прописать «jzmq-3.1.0.jar» в «global_modules», для этого в файле
 «standalone.xml» под тегом «\<subsystem
-xmlns=\"urn:jboss:domain:ee:4.0\"\>»: создать следующий тег:
-
-\<global-modules\>
-
-**\<module name=\"org.zeromq.jzmq\" slot=\"main\"/\>**
-
-\<module name=\"org.postgresql\" slot=\"main\"/\>
-
-\</global-modules\>
+xmlns=\"urn:jboss:domain:ee:4.0\">»: создать следующий тег:
+```
+<global-modules>
+  **<module name="org.zeromq.jzmq" slot="main"/>**
+  <module name="org.postgresql" slot="main"/>
+<global-modules>
+``````
 
 ### Развертывание ECP-MANAGE (для БиКрипт) на Wildfly
 
