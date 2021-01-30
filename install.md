@@ -348,7 +348,7 @@ Nexus: для каждой новой версии необходимо уточ
 «M99.IM.GATEWAY.CLS2») создать файловую систему и пользователей в
 одноименных группах:
 
-```javascript
+```
 groupadd prb99usr
 groupadd ufs99usr
 groupadd dsa99usr
@@ -375,7 +375,7 @@ useradd -g ufsursuusr ufsursuusr
 серверах для MQ-менеджера «M99.ESBMS.GATEWAY1» создать файловую систему
 и пользователей в одноименных группах:
 
-```javascript
+```
 groupadd ibs38usr
 groupadd ups99usr
 groupadd esbmsusr
@@ -406,14 +406,14 @@ useradd -g afn99usr afn99usr
 useradd -g uvdousr uvdousr
 ``````
 
-3)  переопределить ограничения на максимальное число открытых файлов и
+1)  переопределить ограничения на максимальное число открытых файлов и
     создаваемых потоков:
 
 -   переопределить лимиты для пользователя, из-под которого будет
     запускаться ИМ/МЭИМ -- «prb99usr» и «esbmsusr» соответственно с
     помощью команды «ulimit»:
 
-```javascript
+```
 ulimit --Sn \<количество файлов\>
 ulimit --Hn \<количество файлов\>
 ulimit --Su \<количество потоков\>
@@ -493,20 +493,15 @@ vm.max_map_count = \<значение\>
     \- Bootstrap Servers --- указать через запятую IP-адреса всех
     брокеров Kafka кластера Cloudera вместе с портом:
     10.xxx.xxx.xxx:9093,...;
-
     \- Kafka Topic = «int_eventlog»;
-
     \- Acks = «1».
 
     **Параметры безопасности Apache Kafka**
 
-> \- Security Protocol = «SSL»;
->
-> \- SSL Protocol = «TLS»;
->
-> \- SSL Truststore = «V» (установить галочку);
->
-> \- SSL Truststore Type = «JKS».
+    \- Security Protocol = «SSL»;
+    \- SSL Protocol = «TLS»;
+    \- SSL Truststore = «V» (установить галочку);
+    \- SSL Truststore Type = «JKS».
 
 ![](media/image6.png){width="6.488194444444445in"
 height="6.304166666666666in"}
@@ -517,68 +512,41 @@ height="6.304166666666666in"}
 
 -   Категория 1, параметры:
 
-> \- Стенд = \<пусто\>;
->
-> \- Модуль = «integator»;
->
-> \- Узел = \<пусто\>;
->
-> \- Категория = «IntegratorLogger»;
->
-> \- Описание = \<пусто\>;
->
-> \- IM = «ALL»;
->
-> \- console = «ALL»;
->
-> \- kafka = «INFO»;
->
-> \- orchestrator = «OFF»;
->
+> \- Стенд = \<пусто\>;  
+> \- Модуль = «integator»;  
+> \- Узел = \<пусто\>;  
+> \- Категория = «IntegratorLogger»;  
+> \- Описание = \<пусто\>;  
+> \- IM = «ALL»;  
+> \- console = «ALL»;  
+> \- kafka = «INFO»;  
+> \- orchestrator = «OFF»;  
 > \- rolling_file = «OFF».
 
 -   Категория 2, параметры:
 
-> \- Стенд = \<пусто\>;
->
-> \- Модуль = «integator»;
->
-> \- Узел = \<пусто\>;
->
-> \- Категория = «com.sbt.integrator»;
->
-> \- Описание = \<пусто\>;
->
-> \- IM = \<пусто\>;
->
-> \- console = « INFO »;
->
-> \- kafka = «INFO»;
->
-> \- orchestrator = «OFF»;
->
+> \- Стенд = \<пусто\>;  
+> \- Модуль = «integator»;  
+> \- Узел = \<пусто\>;  
+> \- Категория = «com.sbt.integrator»;  
+> \- Описание = \<пусто\>;  
+> \- IM = \<пусто\>  
+> \- console = « INFO »  
+> \- kafka = «INFO»  
+> \- orchestrator = «OFF»  
 > \- rolling_file = «OFF».
 
 -   Категория 3, параметры:
 
-> \- Стенд = \<пусто\>;
->
-> \- Модуль = «integator»;
->
-> \- Узел = \<пусто\>;
->
-> \- Категория = \<пусто\>;
->
-> \- Описание = \<пусто\>;
->
-> \- IM = « OFF»;
->
-> \- console = «OFF»;
->
-> \- kafka = «OFF»;
->
-> \- orchestrator = «OFF»;
->
+> \- Стенд = \<пусто\>  
+> \- Модуль = «integator»  
+> \- Узел = \<пусто\>  
+> \- Категория = \<пусто\>  
+> \- Описание = \<пусто\>  
+> \- IM = « OFF»  
+> \- console = «OFF»  
+> \- kafka = «OFF»  
+> \- orchestrator = «OFF»  
 > \- rolling_file = «OFF».
 
 ![](media/image7.png)  
@@ -617,58 +585,37 @@ height="6.304166666666666in"}
 
     **Параметры безопасности Apache Kafka**
 
-> \- Security Protocol = «SSL»;
->
-> \- SSL Protocol = «TLS»;
->
-> \- SSL Truststore = «V» (установить галочку);
->
+> \- Security Protocol = «SSL»  
+> \- SSL Protocol = «TLS»  
+> \- SSL Truststore = «V» (установить галочку)  
 > \- SSL Truststore Type = «JKS».
 
 2\) Создать 2 категории (аналогично Рисунку 2 для ИМ).
 
 -   Категория 1, параметры:
 
-> \- Стенд = \<пусто\>;
->
-> \- Модуль = «integrator_ms»;
->
-> \- Узел = \<пусто\>;
->
-> \- Категория = «IntegratorLogger»;
->
-> \- Описание = \<пусто\>;
->
-> \- IM = «ALL»;
->
-> \- console = «ALL»;
->
-> \- kafka = «INFO»;
->
-> \- orchestrator = «OFF»;
->
+> \- Стенд = \<пусто\>  
+> \- Модуль = «integrator_ms»  
+> \- Узел = \<пусто\>  
+> \- Категория = «IntegratorLogger»  
+> \- Описание = \<пусто\>  
+> \- IM = «ALL»  
+> \- console = «ALL»  
+> \- kafka = «INFO»  
+> \- orchestrator = «OFF»  
 > \- rolling_file = «OFF».
 
 -   Категория 2, параметры:
 
-> \- Стенд = \<пусто\>;
->
-> \- Модуль = «integrator_ms»;
->
-> \- Узел = \<пусто\>;
->
-> \- Категория = «com.sbt.integrator»;
->
-> \- Описание = \<пусто\>;
->
-> \- IM = \<пусто\>;
->
-> \- console = « INFO »;
->
-> \- kafka = «INFO»;
->
-> \- orchestrator = «OFF»;
->
+> \- Стенд = \<пусто\>  
+> \- Модуль = «integrator_ms»  
+> \- Узел = \<пусто\>  
+> \- Категория = «com.sbt.integrator»  
+> \- Описание = \<пусто\>  
+> \- IM = \<пусто\>  
+> \- console = « INFO »  
+> \- kafka = «INFO»  
+> \- orchestrator = «OFF»  
 > \- rolling_file = «OFF».
 
 ## Подключение подсистемы доступа
