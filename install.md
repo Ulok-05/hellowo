@@ -668,13 +668,13 @@ height="0.5756944444444444in"}
 обязательно необходимо закомментировать строки:
 
 ```
-\#jdk.tls.legacyAlgorithms= \\
-\# K_NULL, C_NULL, M_NULL, \\
-\# DHE_DSS_EXPORT, DHE_RSA_EXPORT, DH_anon_EXPORT, DH_DSS_EXPORT, \\
-\# DH_RSA_EXPORT, RSA_EXPORT, \\
-\# DH_anon, ECDH_anon, \\
-\# RC4_128, RC4_40, DES_CBC, DES40_CBC, \\
-\# 3DES_EDE_CBC
+# jdk.tls.legacyAlgorithms=
+# K_NULL, C_NULL, M_NULL, 
+# DHE_DSS_EXPORT, DHE_RSA_EXPORT, DH_anon_EXPORT, DH_DSS_EXPORT,
+# DH_RSA_EXPORT, RSA_EXPORT,
+# DH_anon, ECDH_anon,
+# RC4_128, RC4_40, DES_CBC, DES40_CBC,
+# 3DES_EDE_CBC
 `````
 
 ### Установка WildFly
