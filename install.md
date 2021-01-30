@@ -719,9 +719,7 @@ read/write/execute для пользователя, от которого буд
 
 ```
   <global-modules>
-
-  <module name="org.postgresql" slot="main">
-
+    <module name="org.postgresql" slot="main">
   </global-modules>
 ``````
 
@@ -777,7 +775,7 @@ http://sbtnexus.ca.sbrf.ru:8081/nexus/content/repositories/Platform_thirdparty/o
 xmlns=\"urn:jboss:domain:ee:4.0\">»: создать следующий тег:
 ```
 <global-modules>
-  **<module name="org.zeromq.jzmq" slot="main"/>**
+  <module name="org.zeromq.jzmq" slot="main"/>
   <module name="org.postgresql" slot="main"/>
 <global-modules>
 ``````
@@ -792,9 +790,9 @@ xmlns=\"urn:jboss:domain:ee:4.0\">»: создать следующий тег:
 
 3\) В файле «/usr/WF/WF_PPRB/bin/standalone.conf» в разделе «JAVA_OPTS»
 добавить строку:
-
+```
 -DpathToBicrypt=/usr/WF/WF_PPRB/standalone/lib/ext
-
+``````
 , где «/usr/WF/WF_PPRB/standalone/lib/ext» - путь к папке с библиотеками
 БиКрипт.
 
@@ -803,13 +801,9 @@ xmlns=\"urn:jboss:domain:ee:4.0\">»: создать следующий тег:
 «global-modules» (выделено жирным):
 
 \<global-modules\>
-
-**\<module name=\"com.sbt.ecp-manage\" slot=\"main\"/\>**
-
-\<module name=\"org.zeromq.jzmq\" slot=\"main\"/\>
-
-\<module name=\"org.postgresql\" slot=\"main\"/\>
-
+  **\<module name=\"com.sbt.ecp-manage\" slot=\"main\"/\>**
+  \<module name=\"org.zeromq.jzmq\" slot=\"main\"/\>
+  \<module name=\"org.postgresql\" slot=\"main\"/\>
 \</global-modules\>
 
 ### Установка модулей
@@ -834,10 +828,10 @@ xmlns=\"urn:jboss:domain:ee:4.0\">»: создать следующий тег:
 
 3\) Подложить файлы \*.jks, по пути указанному в настройках артефакта
 «message-dispatcher» в Конфигураторе:
-
+```
 message-dispatcher\@kafka.ssl.truststore.location=trust.jks
-
 message-dispatcher\@kafka.ssl.keystore.location=keystore.jks
+``````
 
 **ПРИМЕЧАНИЕ:**
 
@@ -891,15 +885,11 @@ message-dispatcher\@kafka.ssl.keystore.location=keystore.jks
 добавить параметры:
 
 Для ИМ:
-
 -Dintegrator.type=IM
-
 -Dintegrator.rest.port=8443
 
 Для МЭИМ:
-
 -Dintegrator.type= MEIM
-
 -Dintegrator.rest.port=8443
 
 , где
@@ -923,40 +913,19 @@ rest-сервис интегратора.
 на
 
 \<security-realm name=\"ApplicationRealm\"\>
-
-\<server-identities\>
-
-\<ssl\>
-
-\<keystore path=\"server.keystore\"
-relative-to=\"jboss.server.config.dir\" keystore-password=\"\<пароль\>\"
-key-password=\"\<пароль\>\"/\>
-
-\</ssl\>
-
-\</server-identities\>
-
-\<authentication\>
-
-\<local default-user=\"\$local\" allowed-users=\"\*\"
-skip-group-loading=\"true\"/\>
-
-\<truststore path=\"client.truststore\"
-relative-to=\"jboss.server.config.dir\"
-keystore-password=\"\<пароль\>\"/\>
-
-\<properties path=\"application-users.properties\"
-relative-to=\"jboss.server.config.dir\"/\>
-
-\</authentication\>
-
-\<authorization\>
-
-\<properties path=\"application-roles.properties\"
-relative-to=\"jboss.server.config.dir\"/\>
-
-\</authorization\>
-
+  \<server-identities\>
+    \<ssl\>
+      \<keystore path=\"server.keystore\" relative-to=\"jboss.server.config.dir\" keystore-password=\"\<пароль\>\" key-password=\"\<пароль\>\"/\>
+    \</ssl\>
+  \</server-identities\>
+  \<authentication\>
+    \<local default-user=\"\$local\" allowed-users=\"\*\" kip-group-loading=\"true\"/\>
+    \<truststore path=\"client.truststore\" relative-to=\"jboss.server.config.dir\" keystore-password=\"\<пароль\>\"/\>
+    \<properties path=\"application-users.properties\" relative-to=\"jboss.server.config.dir\"/\>
+  \</authentication\>
+  \<authorization\>
+    \<properties path=\"application-roles.properties\" relative-to=\"jboss.server.config.dir\"/\>
+  \</authorization\>
 \</security-realm\>
 
 , где:
